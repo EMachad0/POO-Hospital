@@ -1,8 +1,6 @@
 package com.machado.dados;
 
-import com.github.javafaker.Faker;
-
-import java.util.Locale;
+import com.machado.view.Main;
 
 public class Medico extends Pessoa {
 
@@ -13,15 +11,9 @@ public class Medico extends Pessoa {
         this.especialidade = especialidade;
     }
 
-    public Medico() {
-        super();
-        Faker f = new Faker(new Locale("pt-BR"));
-        especialidade = f.job().title();
-    }
-
     public Consulta geraConsulta(Paciente p) {
-        Faker f = new Faker(new Locale("pt-BR"));
-        String diagnostico = "Devido aos sintomas " + p.getDescricao() + " o paciente tem " + f.medical().diseaseName();
+        System.out.println("Qual o diagnostico");
+        String diagnostico = "Devido aos sintomas " + p.getDescricao() + " o paciente tem " + Main.in.nextLine();
         return new Consulta(diagnostico, p, this);
     }
 

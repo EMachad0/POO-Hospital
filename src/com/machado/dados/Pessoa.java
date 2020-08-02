@@ -1,10 +1,5 @@
 package com.machado.dados;
 
-import com.github.javafaker.Faker;
-
-import java.util.Locale;
-import java.util.Random;
-
 public abstract class Pessoa {
 
     protected final long cpf;
@@ -17,15 +12,6 @@ public abstract class Pessoa {
         this.nome = nome;
         this.idade = idade;
         this.cidade = cidade;
-    }
-
-    public Pessoa() {
-        Random r = new Random();
-        Faker f = new Faker(new Locale("pt-BR"));
-        this.cpf = r.nextInt((int) 1e12);
-        this.nome = f.name().fullName();
-        this.idade = (short) r.nextInt(151);
-        this.cidade = f.address().city();
     }
 
     public long getCpf() {

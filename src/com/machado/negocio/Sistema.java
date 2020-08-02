@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Sistema {
 
-    private final Scanner in = Main.in;
+    private static final Scanner in = Main.in;
 
     private final List<Medico> medicos = new ArrayList<>();
     private final List<Consulta> consultas = new ArrayList<>();
@@ -20,7 +20,17 @@ public class Sistema {
 
 
     public void cadastraMedico() {
-        medicos.add(new Medico());
+        System.out.println("Digite o cpf");
+        long cpf = Long.parseLong(in.nextLine());
+        System.out.println("Digite o nome");
+        String nome = in.nextLine();
+        System.out.println("Digite a idade");
+        short idade = Short.parseShort(in.nextLine());
+        System.out.println("Digite a cidade");
+        String cidade = in.nextLine();
+        System.out.println("Digite a especialidade");
+        String especialidade = in.nextLine();
+        medicos.add(new Medico(cpf, nome, idade, cidade, especialidade));
     }
 
     public void cadastraConsulta() {
@@ -35,7 +45,17 @@ public class Sistema {
     }
 
     public void cadastraPaciente() {
-        pacientes.add(new Paciente());
+        System.out.println("Digite o cpf");
+        long cpf = Long.parseLong(in.nextLine());
+        System.out.println("Digite o nome");
+        String nome = in.nextLine();
+        System.out.println("Digite a idade");
+        short idade = Short.parseShort(in.nextLine());
+        System.out.println("Digite a cidade");
+        String cidade = in.nextLine();
+        System.out.println("Digite os sintomas");
+        String sintomas = in.nextLine();
+        pacientes.add(new Paciente(cpf, nome, idade, cidade, sintomas));
     }
 
     public void alteraMedico() {
