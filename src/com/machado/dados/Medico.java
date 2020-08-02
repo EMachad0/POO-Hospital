@@ -38,7 +38,7 @@ public class Medico extends Pessoa {
         return "Medico{" +
                 "nome='" + nome + '\'' +
                 ", especialidade='" + especialidade + '\'' +
-                ", cpf=" + cpf +
+                ", cpf=" + String.format("%011d", cpf) +
                 ", idade=" + idade +
                 ", cidade='" + cidade + '\'' +
                 '}';

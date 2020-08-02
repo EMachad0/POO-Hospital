@@ -32,7 +32,7 @@ public class Paciente extends Pessoa {
         return "Paciente{" +
                 "nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
-                ", cpf=" + cpf +
+                ", cpf=" + String.format("%011d", cpf) +
                 ", idade=" + idade +
                 ", cidade='" + cidade + '\'' +
                 '}';
