@@ -75,6 +75,7 @@ public class Sistema {
             System.out.println("4 - Especialidade");
 
             String op = in.nextLine();
+            if (op.equals("0")) break;
 
             System.out.println("Qual o novo valor?");
             String novo = in.nextLine();
@@ -103,6 +104,7 @@ public class Sistema {
             System.out.println("3 - Diagnostico");
 
             String op = in.nextLine();
+            if (op.equals("0")) break;
 
             System.out.println("Qual o novo valor?");
             String novo = in.nextLine();
@@ -131,6 +133,7 @@ public class Sistema {
             System.out.println("4 - Descrição");
 
             String op = in.nextLine();
+            if (op.equals("0")) break;
 
             System.out.println("Qual o novo valor?");
             String novo = in.nextLine();
