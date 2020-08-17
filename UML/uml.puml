@@ -1,0 +1,89 @@
+@startuml uml
+skinparam dpi 300
+!define LIGHTORANGE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+package "Sistema" {
+    class "Sistema" {
+        + cadastraMedico() : void
+        + cadastraConsulta() : void
+        + cadastraPaciente() : void
+        + alteraMedico() : void
+        + alteraConsulta() : void
+        + alteraPaciente() : void
+        + removeMedico() : void
+        + removeConsulta() : void
+        + removePaciente() : void
+        + mostraMedico() : void
+        + mostraConsulta() : void
+        + mostraPaciente() : void
+    }
+}
+
+package "Dados" {
+    class "Consulta" {
+        - id : int
+        - valor : float
+        - data : Date
+        - diagnostico : String
+    }
+
+    class "Medico" {
+        - especialidade : String
+    }
+
+    class "Paciente" {
+        - descricao : String
+    }
+
+    abstract class "Pessoa" {
+        - cpf : long
+        - nome : String
+        - idade : short
+        - cidade : String
+    }
+}
+
+package "DAO" {
+    class "ConsultaDAO"
+    class "MedicoDAO"
+    class "PacienteDAO"
+    class "PessoaDAO"
+
+    interface "DAO"<T> {
+        + {abstract} insert(T t) : boolean
+        + {abstract} update(T t) : boolean
+        + {abstract} delete(T t) : boolean
+        + {abstract} select(int i) : T
+        + {abstract} selectAll() : List<T>
+    }
+
+    class "Conexao" {
+        - senha : String
+        + {static} getsenha() : String
+        + getConexao() : Connection
+    }
+
+    class "Connection"
+}
+
+Paciente --|> Pessoa
+Medico --|> Pessoa
+Consulta --> Paciente : -paciente
+Consulta --> Medico : -medico
+
+/'
+ConsultaDAO ..> Consulta
+MedicoDAO ..> Medico
+PacienteDAO ..> Paciente
+PessoaDAO ..> Pessoa
+'/
+
+ConsultaDAO ..|> DAO
+MedicoDAO ..|> DAO
+PacienteDAO ..|> DAO
+PessoaDAO ..|> DAO
+
+DAO --> Conexao : -conexao
+Conexao --> Connection : -connection
+@enduml
