@@ -3,49 +3,82 @@ package com.machado.negocio;
 import com.machado.dados.Consulta;
 import com.machado.dados.Medico;
 import com.machado.dados.Paciente;
+import com.machado.persistencia.ConsultaDAO;
+import com.machado.persistencia.MedicoDAO;
+import com.machado.persistencia.PacienteDAO;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Sistema {
 
-    private final List<Medico> medicos = new ArrayList<>();
-    private final List<Consulta> consultas = new ArrayList<>();
-    private final List<Paciente> pacientes = new ArrayList<>();
+    private final MedicoDAO medicoDAO;
+    private final PacienteDAO pacienteDAO;
+    private final ConsultaDAO consultaDAO;
 
-    public void cadastra(Medico medico) {
-        medicos.add(medico);
+    public Sistema() throws SQLException {
+        this.medicoDAO = MedicoDAO.getInstance();
+        this.pacienteDAO = PacienteDAO.getInstance();
+        this.consultaDAO = ConsultaDAO.getInstance();
     }
 
-    public void cadastra(Consulta consulta) {
-        consultas.add(consulta);
+    public void cadastra(Medico medico) throws SQLException {
+        medicoDAO.insert(medico);
     }
 
-    public void cadastra(Paciente paciente) {
-        pacientes.add(paciente);
+    public void cadastra(Consulta consulta) throws SQLException {
+        consultaDAO.insert(consulta);
     }
 
-    public void remove(Medico medico) {
-        medicos.remove(medico);
+    public void cadastra(Paciente paciente) throws SQLException {
+        pacienteDAO.insert(paciente);
     }
 
-    public void remove(Consulta consulta) {
-        consultas.remove(consulta);
+    public void remove(Medico medico) throws SQLException {
+        medicoDAO.delete(medico);
     }
 
-    public void remove(Paciente paciente) {
-        pacientes.remove(paciente);
+    public void remove(Consulta consulta) throws SQLException {
+        consultaDAO.delete(consulta);
     }
 
-    public List<Medico> getMedicos() {
-        return medicos;
+    public void remove(Paciente paciente) throws SQLException {
+        pacienteDAO.delete(paciente);
     }
 
-    public List<Consulta> getConsultas() {
-        return consultas;
+    public Medico getMedico(long cpf) throws SQLException {
+        return medicoDAO.select(cpf);
     }
 
-    public List<Paciente> getPacientes() {
-        return pacientes;
+    public Consulta getConsulta(int id) throws SQLException {
+        return consultaDAO.select(id);
+    }
+
+    public Paciente getPaciente(long cpf) throws SQLException {
+        return pacienteDAO.select(cpf);
+    }
+
+    public void update(Medico m) throws SQLException {
+        medicoDAO.update(m);
+    }
+
+    public void update(Consulta c) throws SQLException {
+        consultaDAO.update(c);
+    }
+
+    public void update(Paciente p) throws SQLException {
+        pacienteDAO.update(p);
+    }
+
+    public List<Medico> getMedicos() throws SQLException {
+        return medicoDAO.selectAll();
+    }
+
+    public List<Consulta> getConsultas() throws SQLException {
+        return consultaDAO.selectAll();
+    }
+
+    public List<Paciente> getPacientes() throws SQLException {
+        return pacienteDAO.selectAll();
     }
 }
