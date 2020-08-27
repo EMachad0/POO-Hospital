@@ -25,28 +25,41 @@ public class Main {
         while (true) {
             System.out.println("Qual operacao?");
 
-            System.out.println("0 - Sair");
-            System.out.println("1 - Cadastrar Medico");
-            System.out.println("2 - Cadastrar Paciente");
-            System.out.println("3 - Cadastrar Consulta");
-            System.out.println("4 - Alterar Medico");
-            System.out.println("5 - Alterar Paciente");
-            System.out.println("6 - Alterar Consulta");
-            System.out.println("7 - Mostrar Medicos");
-            System.out.println("8 - Mostrar Pacientes");
-            System.out.println("9 - Mostrar Consultas");
+            System.out.println("00 - Sair");
+            System.out.println("01 - Cadastrar Medico");
+            System.out.println("02 - Cadastrar Paciente");
+            System.out.println("03 - Cadastrar Consulta");
+            System.out.println("04 - Alterar Medico");
+            System.out.println("05 - Alterar Paciente");
+            System.out.println("06 - Alterar Consulta");
+            System.out.println("07 - Remove Medico");
+            System.out.println("08 - Remove Paciente");
+            System.out.println("09 - Remove Consulta");
+            System.out.println("10 - Mostrar Medicos");
+            System.out.println("11 - Mostrar Pacientes");
+            System.out.println("12 - Mostrar Consultas");
 
-            String op = in.nextLine();
-            if (op.equals("1")) cadastraMedico();
-            else if (op.equals("2")) cadastraPaciente();
-            else if (op.equals("3")) cadastraConsulta();
-            else if (op.equals("4")) alteraMedico();
-            else if (op.equals("5")) alteraPaciente();
-            else if (op.equals("6")) alteraConsulta();
-            else if (op.equals("7")) mostraMedico();
-            else if (op.equals("8")) mostraPaciente();
-            else if (op.equals("9")) mostraConsulta();
-            else break;
+            String sop = in.nextLine();
+            try {
+                int op = Integer.parseInt(sop);
+
+                if (op == 0) break;
+                else if (op == 1) cadastraMedico();
+                else if (op == 2) cadastraPaciente();
+                else if (op == 3) cadastraConsulta();
+                else if (op == 4) alteraMedico();
+                else if (op == 5) alteraPaciente();
+                else if (op == 6) alteraConsulta();
+                else if (op == 7) removeMedico();
+                else if (op == 8) removePaciente();
+                else if (op == 9) removeConsulta();
+                else if (op == 10) mostraMedico();
+                else if (op == 11) mostraPaciente();
+                else if (op == 12) mostraConsulta();
+                else System.out.println("Numero Invalido");
+            } catch (NumberFormatException e) {
+                System.out.println("Não é uma opção valida");
+            }
         }
     }
 
@@ -179,6 +192,27 @@ public class Main {
             else if (op.equals("4")) p.setDescricao(novo);
             else break;
         }
+    }
+
+    public static void removeMedico() {
+        System.out.println("Qual Medico?");
+        mostraPaciente();
+        sistema.remove(sistema.getMedicos().get(in.nextInt()));
+        in.nextLine();
+    }
+
+    public static void removeConsulta() {
+        System.out.println("Qual Consulta?");
+        mostraPaciente();
+        sistema.remove(sistema.getConsultas().get(in.nextInt()));
+        in.nextLine();
+    }
+
+    public static void removePaciente() {
+        System.out.println("Qual Paciente?");
+        mostraPaciente();
+        sistema.remove(sistema.getPacientes().get(in.nextInt()));
+        in.nextLine();
     }
 
     public static void mostraMedico() {

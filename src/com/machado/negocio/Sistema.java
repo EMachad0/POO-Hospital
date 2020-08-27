@@ -25,6 +25,18 @@ public class Sistema {
         pacientes.add(paciente);
     }
 
+    public void remove(Medico medico) {
+        medicos.remove(medico);
+    }
+
+    public void remove(Consulta consulta) {
+        consultas.remove(consulta);
+    }
+
+    public void remove(Paciente paciente) {
+        pacientes.remove(paciente);
+    }
+
     public List<Medico> getMedicos() {
         return medicos;
     }
