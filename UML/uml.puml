@@ -5,18 +5,18 @@ skinparam dpi 300
 
 package "Sistema" {
     class "Sistema" {
-        + cadastraMedico() : void
-        + cadastraConsulta() : void
-        + cadastraPaciente() : void
-        + alteraMedico() : void
-        + alteraConsulta() : void
-        + alteraPaciente() : void
-        + removeMedico() : void
-        + removeConsulta() : void
-        + removePaciente() : void
-        + mostraMedico() : void
-        + mostraConsulta() : void
-        + mostraPaciente() : void
+        + cadastra(Medico) : void
+        + cadastra(Consulta) : void
+        + cadastra(Paciente) : void
+        + update(Medico) : void
+        + update(Consulta) : void
+        + update(Paciente) : void
+        + remove(Medico) : void
+        + remove(Consulta) : void
+        + remove(Paciente) : void
+        + getMedicos() : List<Medico>
+        + getConsultas() : List<Consulta>
+        + getPacientes() : List<Paciente>
     }
 }
 
@@ -48,7 +48,7 @@ package "DAO" {
     class "ConsultaDAO"
     class "MedicoDAO"
     class "PacienteDAO"
-    class "PessoaDAO"
+    ' class "PessoaDAO"
 
     interface "DAO"<T> {
         + {abstract} insert(T t) : boolean
@@ -82,7 +82,7 @@ PessoaDAO ..> Pessoa
 ConsultaDAO ..|> DAO
 MedicoDAO ..|> DAO
 PacienteDAO ..|> DAO
-PessoaDAO ..|> DAO
+' PessoaDAO ..|> DAO
 
 DAO --> Conexao : -conexao
 Conexao --> Connection : -connection
