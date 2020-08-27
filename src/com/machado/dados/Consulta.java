@@ -21,16 +21,6 @@ public class Consulta {
         this.medico = medico;
     }
 
-    public Consulta(String diagnostico, Paciente paciente, Medico medico) {
-        this.paciente = paciente;
-        this.medico = medico;
-
-        this.id = (int) (Math.random() * 100000000);
-        this.valor = (float) (Math.random() * 1000);
-        this.date = new Date();
-        this.diagnostico = diagnostico;
-    }
-
     @Override
     public String toString() {
         return "Consulta de id " + id + ":\n" +

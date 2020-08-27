@@ -1,9 +1,5 @@
 package com.machado.dados;
 
-import com.github.javafaker.Faker;
-
-import java.util.Locale;
-
 public class Paciente extends Pessoa {
 
     private String descricao;
@@ -11,12 +7,6 @@ public class Paciente extends Pessoa {
     public Paciente(long cpf, String nome, short idade, String cidade, String descricao) {
         super(cpf, nome, idade, cidade);
         this.descricao = descricao;
-    }
-
-    public Paciente() {
-        super();
-        Faker f = new Faker(new Locale("pt-BR"));
-        descricao = f.medical().symptoms();
     }
 
     public String getDescricao() {
