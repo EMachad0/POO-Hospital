@@ -3,24 +3,71 @@ skinparam dpi 300
 !define LIGHTORANGE
 !includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
 
+'package "Apresentacao" {
+'
+'    class MainGui {
+'        - root : JPanel
+'        - tabbedPane : JTabbedpane
+'        + {Static} Main(String[]) : void
+'        + getRoot() : JPanel
+'    }
+'
+'    class Tab {
+'     - root : JPanel
+'        - table : JTable
+'        - btnAdd : JButton
+'        - btnUpd : JButton
+'        - btnRmv : JButton
+'        + getRoot() : JPanel
+'    }
+'
+'    class CadastroDialog {
+'    }
+'
+'    class MyFormatter {
+'        + {static} formatCpf(long) : String
+'        + {static} formatMoney(float) : String
+'    }
+'}
+
 package "Sistema" {
-    class "Sistema" {
-        + cadastra(Medico) : void
-        + cadastra(Consulta) : void
-        + cadastra(Paciente) : void
-        + update(Medico) : void
-        + update(Consulta) : void
-        + update(Paciente) : void
-        + remove(Medico) : void
-        + remove(Consulta) : void
-        + remove(Paciente) : void
-        + getMedicos() : List<Medico>
-        + getConsultas() : List<Consulta>
-        + getPacientes() : List<Paciente>
+    abstract class AbstractTableModel
+
+    abstract class "Sistema"<T> {
+        - columns : String[]
+        - {abstract} initColumns() : void
+        + cadastrar(T) : void
+        + cadastrar(List<T>) : void
+        + update(int) : void
+        + remove(int) : void
+        + get(int) : T
+        + getAll() : List<T>
+        + atualizar() : void
+        + getRowCount() : int
+        + getColumnCount() : int
+        + getColumnName() : String
+    }
+
+    class "SistemaMedico" {
+        - initColumns() : void
+        + getValueAt(int, int) : Object
+    }
+
+    class "SistemaPaciente" {
+        - initColumns() : void
+        + getValueAt(int, int) : Object
+    }
+
+    class "SistemaConsulta" {
+        - initColumns() : void
+        + getValueAt(int, int) : Object
     }
 }
 
 package "Dados" {
+
+    interface "Dado"
+
     class "Consulta" {
         - id : int
         - valor : float
@@ -67,6 +114,20 @@ package "DAO" {
     class "Connection"
 }
 
+'MainGui --> Tab : -tabs
+'Tab --> Sistema : -sistema
+'Tab ..> CadastroDialog
+
+Sistema --|> AbstractTableModel
+SistemaMedico --|> Sistema
+SistemaConsulta --|> Sistema
+SistemaPaciente --|> Sistema
+'SistemaMedico --> MedicoDAO
+'SistemaConsulta --> ConsultaDAO
+'SistemaPaciente --> PacienteDAO
+
+'Consulta --|> Dado
+'Pessoa <|-- Dado
 Paciente --|> Pessoa
 Medico --|> Pessoa
 Consulta --> Paciente : -paciente
@@ -82,7 +143,6 @@ PessoaDAO ..> Pessoa
 ConsultaDAO ..|> DAO
 MedicoDAO ..|> DAO
 PacienteDAO ..|> DAO
-' PessoaDAO ..|> DAO
 
 DAO --> Conexao : -conexao
 Conexao --> Connection : -connection
