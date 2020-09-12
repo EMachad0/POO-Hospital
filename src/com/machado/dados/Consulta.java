@@ -4,13 +4,21 @@ import java.time.LocalDate;
 
 public class Consulta implements Dado {
 
-    private int id;
+    private Integer id = null;
     private float valor;
     private LocalDate date;
     private String diagnostico;
 
     private final Paciente paciente;
     private final Medico medico;
+
+    public Consulta(float valor, LocalDate date, String diagnostico, Paciente paciente, Medico medico) {
+        this.valor = valor;
+        this.date = date;
+        this.diagnostico = diagnostico;
+        this.paciente = paciente;
+        this.medico = medico;
+    }
 
     public Consulta(int id, float valor, LocalDate date, String diagnostico, Paciente paciente, Medico medico) {
         this.id = id;
