@@ -1,9 +1,8 @@
 package com.machado.dados;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-public class Consulta {
+public class Consulta implements Dado {
 
     private int id;
     private float valor;

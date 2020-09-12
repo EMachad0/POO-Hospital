@@ -1,6 +1,6 @@
 package com.machado.dados;
 
-public abstract class Pessoa {
+public abstract class Pessoa implements Dado {
 
     protected final long cpf;
     protected String nome;
