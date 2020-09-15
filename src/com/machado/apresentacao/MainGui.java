@@ -1,5 +1,8 @@
 package com.machado.apresentacao;
 
+import com.machado.apresentacao.tabelas.TabelaConsulta;
+import com.machado.apresentacao.tabelas.TabelaMedico;
+import com.machado.apresentacao.tabelas.TabelaPaciente;
 import com.machado.apresentacao.tabs.Tab;
 import com.machado.apresentacao.tabs.TabConsulta;
 import com.machado.apresentacao.tabs.TabMedico;
@@ -7,9 +10,7 @@ import com.machado.apresentacao.tabs.TabPaciente;
 import com.machado.dados.Consulta;
 import com.machado.dados.Medico;
 import com.machado.dados.Paciente;
-import com.machado.negocio.SistemaConsulta;
-import com.machado.negocio.SistemaMedico;
-import com.machado.negocio.SistemaPaciente;
+import com.machado.negocio.Sistema;
 import com.machado.persistencia.Conexao;
 import com.machado.persistencia.ConsultaDAO;
 import com.machado.persistencia.MedicoDAO;
@@ -26,11 +27,11 @@ public class MainGui {
 
     public MainGui() {
         try {
-            Tab<Medico> tm = new TabMedico(new SistemaMedico(MedicoDAO.getInstance()), "Medicos");
+            Tab<Medico> tm = new TabMedico(new TabelaMedico(new Sistema<>(MedicoDAO.getInstance())), "Medicos");
             tabbedPane.add(tm.getRoot());
-            Tab<Paciente> tp = new TabPaciente(new SistemaPaciente(PacienteDAO.getInstance()), "Pacientes");
+            Tab<Paciente> tp = new TabPaciente(new TabelaPaciente(new Sistema<>(PacienteDAO.getInstance())), "Pacientes");
             tabbedPane.add(tp.getRoot());
-            Tab<Consulta> tc = new TabConsulta(new SistemaConsulta(ConsultaDAO.getInstance()), "Consultas");
+            Tab<Consulta> tc = new TabConsulta(new TabelaConsulta(new Sistema<>(ConsultaDAO.getInstance())), "Consultas");
             tabbedPane.add(tc.getRoot());
         } catch (SQLException throwables) {
             throwables.printStackTrace();

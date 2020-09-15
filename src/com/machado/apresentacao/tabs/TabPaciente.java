@@ -1,13 +1,13 @@
 package com.machado.apresentacao.tabs;
 
 import com.machado.apresentacao.dialogs.DialogCadastroPaciente;
+import com.machado.apresentacao.tabelas.Tabela;
 import com.machado.dados.Paciente;
-import com.machado.negocio.Sistema;
 
 public class TabPaciente extends Tab<Paciente> {
 
-    public TabPaciente(Sistema<Paciente> sistema, String title) {
-        super(sistema, title);
+    public TabPaciente(Tabela<Paciente> tabela, String title) {
+        super(tabela, title);
     }
 
     @Override

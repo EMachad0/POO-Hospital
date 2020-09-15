@@ -43,7 +43,7 @@ public abstract class DialogCadastro<T extends Dado> extends JDialog {
         initInputs();
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);
     }
 
     public void showDialog() {

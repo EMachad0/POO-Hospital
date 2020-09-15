@@ -1,13 +1,13 @@
 package com.machado.apresentacao.tabs;
 
 import com.machado.apresentacao.dialogs.DialogCadastroConsulta;
+import com.machado.apresentacao.tabelas.Tabela;
 import com.machado.dados.Consulta;
-import com.machado.negocio.Sistema;
 
 public class TabConsulta extends Tab<Consulta> {
 
-    public TabConsulta(Sistema<Consulta> sistema, String title) {
-        super(sistema, title);
+    public TabConsulta(Tabela<Consulta> tabela, String title) {
+        super(tabela, title);
     }
 
     @Override

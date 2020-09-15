@@ -1,7 +1,7 @@
 package com.machado.apresentacao.tabs;
 
+import com.machado.apresentacao.tabelas.Tabela;
 import com.machado.dados.Dado;
-import com.machado.negocio.Sistema;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,13 +15,13 @@ public abstract class Tab<T extends Dado> {
     private JButton btnUpd;
     private JButton btnRmv;
 
-    protected final Sistema<T> sistema;
+    protected final Tabela<T> tabela;
 
-    public Tab(Sistema<T> sistema, String title) {
-        this.sistema = sistema;
+    public Tab(Tabela<T> tabela, String title) {
+        this.tabela = tabela;
         root.setName(title);
 
-        table.setModel(sistema);
+        table.setModel(tabela);
 
         // Estilo da Tabela
         table.getTableHeader().setFont(new Font("Sagoe UI", Font.BOLD, 14));
@@ -49,7 +49,7 @@ public abstract class Tab<T extends Dado> {
 
     protected void adicionaContato(T t) {
         try {
-            if (t != null) sistema.cadastrar(t);
+            if (t != null) tabela.cadastrar(t);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             JOptionPane.showMessageDialog(null, throwables.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
@@ -67,7 +67,7 @@ public abstract class Tab<T extends Dado> {
     protected void removeContato() {
         if (table.getSelectedRow() != -1) {
             try {
-                sistema.remover(table.getSelectedRow());
+                tabela.remover(table.getSelectedRow());
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
                 JOptionPane.showMessageDialog(null, throwables.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
