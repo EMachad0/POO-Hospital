@@ -1,13 +1,11 @@
 package com.machado.apresentacao.tabelas;
 
 import com.machado.apresentacao.MyFormatter;
-import com.machado.dados.Consulta;
 import com.machado.dados.Paciente;
 import com.machado.negocio.Sistema;
 
 import javax.swing.*;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class TabelaPaciente extends Tabela<Paciente> {
 
@@ -58,8 +56,10 @@ public class TabelaPaciente extends Tabela<Paciente> {
             if (j == 3) p.setCidade(s);
             if (j == 4) p.setDescricao(s);
             sistema.atualizar(p);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            atualizar();
+        } catch (SQLException | NumberFormatException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

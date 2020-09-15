@@ -2,12 +2,12 @@ package com.machado.apresentacao.tabelas;
 
 import com.machado.apresentacao.MyFormatter;
 import com.machado.dados.Consulta;
-import com.machado.dados.Medico;
 import com.machado.negocio.Sistema;
 
 import javax.swing.*;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class TabelaConsulta extends Tabela<Consulta> {
 
@@ -53,12 +53,14 @@ public class TabelaConsulta extends Tabela<Consulta> {
         String s = (String) o;
         try {
             Consulta c = sistema.get(i);
-            if (j == 1) c.setValor(Float.parseFloat(s));
-            if (j == 2) c.setDate(LocalDate.parse(s));
-            if (j == 3) c.setDiagnostico(s);
+            if (j == 2) c.setValor(Float.parseFloat(s.replace(",", ".")));
+            if (j == 3) c.setDate(LocalDate.parse(s));
+            if (j == 4) c.setDiagnostico(s);
             sistema.atualizar(c);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            atualizar();
+        } catch (SQLException | NumberFormatException | DateTimeParseException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 

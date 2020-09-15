@@ -56,8 +56,10 @@ public class TabelaMedico extends Tabela<Medico> {
             if (j == 3) m.setCidade(s);
             if (j == 4) m.setEspecialidade(s);
             sistema.atualizar(m);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            atualizar();
+        } catch (SQLException | NumberFormatException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
