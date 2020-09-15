@@ -31,42 +31,20 @@ skinparam dpi 300
 '}
 
 package "Sistema" {
-    abstract class AbstractTableModel
-
     abstract class "Sistema"<T> {
-        - columns : String[]
-        - {abstract} initColumns() : void
         + cadastrar(T) : void
-        + cadastrar(List<T>) : void
-        + update(int) : void
-        + remove(int) : void
+        + remover(long) : void
+        + atualizar(int) : void
+        + select(long) : T
         + get(int) : T
         + getAll() : List<T>
-        + atualizar() : void
-        + getRowCount() : int
-        + getColumnCount() : int
-        + getColumnName() : String
-    }
-
-    class "SistemaMedico" {
-        - initColumns() : void
-        + getValueAt(int, int) : Object
-    }
-
-    class "SistemaPaciente" {
-        - initColumns() : void
-        + getValueAt(int, int) : Object
-    }
-
-    class "SistemaConsulta" {
-        - initColumns() : void
-        + getValueAt(int, int) : Object
+        + getSize() : int
     }
 }
 
 package "Dados" {
 
-    interface "Dado"
+    'interface "Dado"
 
     class "Consulta" {
         - id : int
@@ -117,14 +95,6 @@ package "DAO" {
 'MainGui --> Tab : -tabs
 'Tab --> Sistema : -sistema
 'Tab ..> CadastroDialog
-
-Sistema --|> AbstractTableModel
-SistemaMedico --|> Sistema
-SistemaConsulta --|> Sistema
-SistemaPaciente --|> Sistema
-'SistemaMedico --> MedicoDAO
-'SistemaConsulta --> ConsultaDAO
-'SistemaPaciente --> PacienteDAO
 
 'Consulta --|> Dado
 'Pessoa <|-- Dado
