@@ -45,4 +45,19 @@ public class TabelaMedico extends Tabela<Medico> {
         }
         return null;
     }
+
+    @Override
+    public void setValueAt(Object o, int i, int j) {
+        String s = (String) o;
+        try {
+            Medico m = sistema.get(i);
+            if (j == 1) m.setNome(s);
+            if (j == 2) m.setIdade(Short.parseShort(s));
+            if (j == 3) m.setCidade(s);
+            if (j == 4) m.setEspecialidade(s);
+            sistema.atualizar(m);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

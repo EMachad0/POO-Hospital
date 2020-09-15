@@ -1,11 +1,13 @@
 package com.machado.apresentacao.tabelas;
 
 import com.machado.apresentacao.MyFormatter;
+import com.machado.dados.Consulta;
 import com.machado.dados.Paciente;
 import com.machado.negocio.Sistema;
 
 import javax.swing.*;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class TabelaPaciente extends Tabela<Paciente> {
 
@@ -44,5 +46,20 @@ public class TabelaPaciente extends Tabela<Paciente> {
             JOptionPane.showMessageDialog(null, throwables.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
         return null;
+    }
+
+    @Override
+    public void setValueAt(Object o, int i, int j) {
+        String s = (String) o;
+        try {
+            Paciente p = sistema.get(i);
+            if (j == 1) p.setNome(s);
+            if (j == 2) p.setIdade(Short.parseShort(s));
+            if (j == 3) p.setCidade(s);
+            if (j == 4) p.setDescricao(s);
+            sistema.atualizar(p);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

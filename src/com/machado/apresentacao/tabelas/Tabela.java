@@ -44,4 +44,9 @@ public abstract class Tabela<T extends Dado> extends AbstractTableModel {
     public String getColumnName(int i) {
         return columns[i];
     }
+
+    @Override
+    public boolean isCellEditable(int i, int j) {
+        return j > 0;
+    }
 }
