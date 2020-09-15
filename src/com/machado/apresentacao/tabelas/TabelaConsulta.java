@@ -17,7 +17,7 @@ public class TabelaConsulta extends Tabela<Consulta> {
 
     @Override
     protected String[] initColumns() {
-        return new String[]{"Medico", "Paciente", "Diagnostico", "Data", "Valor"};
+        return new String[]{"Medico", "Paciente", "Valor", "Data", "Diagnostico"};
     }
 
     @Override
