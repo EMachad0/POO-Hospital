@@ -22,6 +22,10 @@ public class Sistema<T extends Dado> {
         dao.delete(select(i));
     }
 
+    public void atualizar(T t) throws SQLException {
+        dao.update(t);
+    }
+
     public T select(long i) throws SQLException {
         return dao.select(i);
     }
