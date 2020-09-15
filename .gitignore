@@ -123,3 +123,6 @@ fabric.properties
 .idea/$CACHE_FILE$
 
 # End of https://www.toptal.com/developers/gitignore/api/java,jetbrains
+
+# add libs to github
+!/lib/*
