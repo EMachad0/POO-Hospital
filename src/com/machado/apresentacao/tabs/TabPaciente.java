@@ -11,7 +11,7 @@ public class TabPaciente extends Tab<Paciente> {
     }
 
     @Override
-    protected Paciente novoContato() {
+    protected Paciente novoDado() {
         DialogCadastroPaciente dcp = new DialogCadastroPaciente();
         dcp.showDialog();
         return dcp.getDado();

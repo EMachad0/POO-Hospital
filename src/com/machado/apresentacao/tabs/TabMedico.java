@@ -11,7 +11,7 @@ public class TabMedico extends Tab<Medico> {
     }
 
     @Override
-    protected Medico novoContato() {
+    protected Medico novoDado() {
         DialogCadastroMedico dcm = new DialogCadastroMedico();
         dcm.showDialog();
         return dcm.getDado();

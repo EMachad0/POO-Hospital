@@ -11,7 +11,7 @@ public class TabConsulta extends Tab<Consulta> {
     }
 
     @Override
-    protected Consulta novoContato() {
+    protected Consulta novoDado() {
         DialogCadastroConsulta dcc = new DialogCadastroConsulta();
         dcc.showDialog();
         return dcc.getDado();

@@ -31,7 +31,7 @@ public abstract class Tab<T extends Dado> {
         table.setSelectionBackground(Color.decode("#e85a5a"));
         table.setSelectionForeground(Color.WHITE);
 
-        btnAdd.addActionListener(actionEvent -> adicionaContato(novoContato()));
+        btnAdd.addActionListener(actionEvent -> adicionaContato(novoDado()));
         btnRmv.addActionListener(actionEvent -> removeContato());
 
         // estilo dos botoes
@@ -41,7 +41,7 @@ public abstract class Tab<T extends Dado> {
         btnRmv.setBackground(Color.WHITE);
     }
 
-    protected abstract T novoContato();
+    protected abstract T novoDado();
 
     protected void adicionaContato(T t) {
         try {
